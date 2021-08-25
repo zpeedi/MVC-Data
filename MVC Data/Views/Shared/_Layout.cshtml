@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        <link rel="stylesheet" href="~/Style.css">
+    </head>
+    <body>
+        <nav>
+            @Html.ActionLink("Start", "People", "Home")
+            @Html.ActionLink("Ny Person", "Create", "Home")
+        </nav>
+        <div>
+            @RenderBody()
+        </div>
+    </body>
+</html>
