@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVC_Data.Models
 {
     public class PeopleViewModel
     {
         public List<Person> People { get; set; }
+        [Required(ErrorMessage ="Du måste ange en söksträng")]
         public string SearchString { get; set; }
       
 

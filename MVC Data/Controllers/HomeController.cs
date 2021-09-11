@@ -24,10 +24,17 @@ namespace MVC_Data.Controllers
         [HttpPost]
         public IActionResult People(PeopleViewModel peopleViewModel)
         {
-            PeopleViewModel search = service.All();
-            search.SearchString = peopleViewModel.SearchString;
+            if (ModelState.IsValid)
+            {
+                PeopleViewModel search = service.All();
+                search.SearchString = peopleViewModel.SearchString;
         
-            return View("People", service.FindBy(search));
+                return View("People", service.FindBy(search));
+            }
+            else
+            {
+                return View("People", service.All());
+            }
         }
 
         [HttpGet]
@@ -38,8 +45,15 @@ namespace MVC_Data.Controllers
         [HttpPost]
         public IActionResult Create(CreatePersonViewModel newPerson)
         {
-            service.Add(newPerson);
-            return RedirectToAction("Create");
+            if (ModelState.IsValid)
+            {
+                service.Add(newPerson);
+                return RedirectToAction("Create");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

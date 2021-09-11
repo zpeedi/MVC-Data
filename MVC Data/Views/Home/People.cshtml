@@ -11,20 +11,18 @@
         </tr>
         @foreach (Person p in Model.People)
         {
-        <tr>
-            <td>@p.Name</td>
+          <partial name="_TableRow.cshtml" model="p" />
+              
 
-            <td>@p.PhoneNumber</td>
-
-            <td>@p.City</td>
-           
-        </tr>
         }
     </table>
 </div>
 
+
 <form asp-action="People" method="post">
+    <div asp-validation-summary="All"></div>
     <label asp-for="SearchString">Sök på stad: </label>
-    <input asp-for="SearchString"/>
+    <input asp-for="SearchString" />
     <button type="submit">Filtrera på stad</button>
 </form>
+
