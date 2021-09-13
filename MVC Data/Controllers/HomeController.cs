@@ -24,6 +24,18 @@ namespace MVC_Data.Controllers
         [HttpPost]
         public IActionResult People(PeopleViewModel peopleViewModel)
         {
+
+            PeopleViewModel search = service.All();
+            search.SearchString = peopleViewModel.SearchString;
+            if (String.IsNullOrEmpty(search.SearchString))
+            {
+                return View("People", service.All());
+            }
+            else
+            {
+                return View("People", service.FindBy(search));
+
+            }/*
             if (ModelState.IsValid)
             {
                 PeopleViewModel search = service.All();
@@ -34,25 +46,28 @@ namespace MVC_Data.Controllers
             else
             {
                 return View("People", service.All());
-            }
+            }*/
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View("Create");
+            return View("People", service.All());
         }
         [HttpPost]
-        public IActionResult Create(CreatePersonViewModel newPerson)
+        public IActionResult Create(PeopleViewModel peopleViewModel)
         {
+            //service.Add(peopleViewModel.CreatePersonViewModel);
+            //return RedirectToAction("People");
+            
             if (ModelState.IsValid)
             {
-                service.Add(newPerson);
-                return RedirectToAction("Create");
+                service.Add(peopleViewModel.CreatePersonViewModel);
+                return RedirectToAction("People");
             }
             else
             {
-                return View();
+                return RedirectToAction("People");
             }
         }
     }

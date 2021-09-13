@@ -9,9 +9,9 @@ namespace MVC_Data.Models
     public class PeopleViewModel
     {
         public List<Person> People { get; set; }
-        [Required(ErrorMessage ="Du måste ange en söksträng")]
+        //[Required(ErrorMessage ="Du måste ange en söksträng")]
         public string SearchString { get; set; }
-      
+        public CreatePersonViewModel CreatePersonViewModel { get; set; }
 
 
         public List<Person> Search()

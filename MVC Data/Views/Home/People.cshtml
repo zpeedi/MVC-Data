@@ -2,27 +2,34 @@
 
 
 <div>
-    
-    <table id="table">
-        <tr>
-            <th>Namn</th>
-            <th>Telefonnummer</th>
-            <th>Stad</th>
-        </tr>
-        @foreach (Person p in Model.People)
-        {
-          <partial name="_TableRow.cshtml" model="p" />
-              
 
-        }
-    </table>
+      
+            <partial name="_People.cshtml" model="Model" />
+
+
+        
 </div>
 
 
-<form asp-action="People" method="post">
+
+
+<h1>Create</h1>
+
+<form asp-action="Create" method="post">
     <div asp-validation-summary="All"></div>
-    <label asp-for="SearchString">Sök på stad: </label>
-    <input asp-for="SearchString" />
-    <button type="submit">Filtrera på stad</button>
+    <p>
+        <label asp-for="CreatePersonViewModel.Name"></label>
+        <input asp-for="CreatePersonViewModel.Name" />
+    </p>
+    <p>
+        <label asp-for="CreatePersonViewModel.PhoneNumber"></label>
+        <input asp-for="CreatePersonViewModel.PhoneNumber" />
+    </p>
+    <p>
+        <label asp-for="CreatePersonViewModel.City"></label>
+        <input asp-for="CreatePersonViewModel.City" />
+    </p>
+    <button type="submit">Skapa Person</button>
+    <button type="reset">Rensa</button>
 </form>
 

@@ -1,0 +1,40 @@
+﻿@model PeopleViewModel
+
+<h1>Personer</h1>
+<div>
+    <div class="row">
+        <div class="col-2">
+            Namn
+        </div>
+        <div class="col-2">
+            Telefonnummer
+        </div>
+        <div class="col-2">
+            Stad
+        </div>
+    </div>
+
+    @foreach (Person p in Model.People)
+    {
+
+        <div class="row">
+            <div class="col-2">
+                @p.Name
+            </div>
+            <div class="col-2">
+                @p.PhoneNumber
+            </div>
+            <div class="col-2">
+                @p.City
+            </div>
+        </div>
+    }
+
+    <form asp-action="People" method="post">
+        <div asp-validation-summary="All"></div>
+        <label asp-for="SearchString">Sök på stad: </label>
+        <input asp-for="SearchString" />
+        <button type="submit">Filtrera på stad</button>
+     </form>
+
+</div>
